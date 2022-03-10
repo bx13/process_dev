@@ -5,7 +5,7 @@
       <div class="card-image" :style="{ cursor: 'true' ? 'pointer': ''}">
         <figure class="image is-4by3">
           <img
-            :src="composter.img"
+            :src="composter[2]"
             alt="Placeholder image"
           />
         </figure>
@@ -22,15 +22,15 @@
 
         <div class="content">
           <p>
-            {{ composter.titre }}
+            {{ composter[1] }}
           </p>
           <div  :class="{ 'adresse-opened': isOpen}">
             <a :href="url">
-              {{ composter.date_debut }} </a>
+              {{ composter[9] }} </a>
           </div>
           <div>
             <br/>
-            <span :class="{ 'etat': true, 'afaire': isAfaire, 'encours': isEncours, 'terminer': isTerminer}">{{ composter.etat }}</span>
+            <span :class="{ 'etat': true, 'afaire': isAfaire, 'encours': isEncours, 'terminer': isTerminer}">{{ composter[8] }}</span>
           </div>
         </div>
       </div>
@@ -54,21 +54,24 @@ export default {
       focusedDay: "",
     };
   },
+  mounted() {
+    console.log(this.composter);
+  },
   computed: {
     componentTitle() {
-      return this.composter.titre;
+      return this.composter[3];
     },
     isOpen() {
       return false
     },
     isAfaire() {
-      return this.composter.etat === "A faire" ;
+      return this.composter[8] === "A faire" ;
     },
     isEncours() {
-      return this.composter.etat === "En cours" ;
+      return this.composter[8] === "En cours" ;
     },
     isTerminer() {
-      return this.composter.etat === "Terminé" ;
+      return this.composter[8] === "Terminé" ;
     },
     adresse() {
       return '28 rue des plantes en pots ' + (this.composterId % 3 == 0 ? '4400 Nantes' : 'Toulouse')

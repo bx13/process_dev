@@ -19,11 +19,18 @@
 
 <script>
 import ModuleList from "./ModuleList.vue";
+import router from "../router";
 export default {
   name: "TropheePage",
   components: {ModuleList},
   props: {
     message: String,
+  },
+  beforeCreate() {
+    if(localStorage.getItem("spreadsheetId") === null){
+      router.push({ path: '/login' })
+    }
+
   },
 };
 </script>

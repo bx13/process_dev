@@ -3,7 +3,7 @@
     <div class="navbar-brand">
       <img
           class="navbar-brand-img"
-          src="../../public/assets/img/R.png"
+          :src="logo"
       />
 
 
@@ -24,46 +24,135 @@
 
     <div class="navbar-menu" :class="{ 'is-active': mobileMenuActive }">
       <div class="navbar-start">
-        <a class="navbar-item" href="/">
+        <router-link class="navbar-item" to="/">
           Accueil
-        </a>
-        <a class="navbar-item" href="/trophee">
+        </router-link>
+        <router-link class="navbar-item" to="/trophee">
           Trophée
-        </a>
-        <a class="navbar-item" href="/about">
+        </router-link>
+        <router-link class="navbar-item" to="/about">
           Contact
-        </a>
+        </router-link>
       </div>
 
       <div class="navbar-end">
-        <a class="navbar-item btn-connexion" href="/login">
+        <router-link id='btn_connexion' :class="{ 'navbar-item btn-connexion': true, 'cacher' : isConnected === 'true'}" to="/login">
           Connexion
-        </a>
-        <div class="navbar-item copyright">
-          Created by M2 ISI &copy;
+        </router-link>
+        <div :class="{ 'navbar-item copyright email_user': true, 'cacher' : isConnected === 'false'}" >
+          {{email}}
         </div>
+        <button :class="{ 'navbar-item btn-deconnexion': true, 'cacher' : isConnected === 'false'}" @click="LogoutGoogle">
+          Deconnexion
+        </button>
+
       </div>
+    </div>
+  </nav>
+
+  <nav class="navbar box bottom" role="navigation" aria-label="main navigation">
+
+
+    <div class="navbar-menu " :class="{ 'is-active': true }">
+      <div class="navbar-start">
+        <router-link class="navbar-item" to="/">
+          Accueil
+        </router-link>
+        <router-link class="navbar-item" to="/trophee">
+          Trophée
+        </router-link>
+        <router-link class="navbar-item" to="/about">
+          Contact
+        </router-link>
+      </div>
+
+
     </div>
   </nav>
 </template>
 
 <script>
+
+
 export default {
   name: "MenuView",
   data() {
     return {
       mobileMenuActive: false,
+      isConnected : 'false',
+      email : '',
+      logo : '',
     };
   },
+  mounted() {
+    this.getDataUser();
+    document.addEventListener('itemInserted', this.getDataUser, false);
+
+    console.log(localStorage.getItem("meta_donnee"));
+    var data = JSON.parse(localStorage.getItem("meta_donnee"));
+    if (data.values.length > 0) {
+      var meta_data = data.values[0];
+      // Print columns A and E, which correspond to indices 0 and 4.
+      this.logo = meta_data[1];
+
+    } else {
+      alert('No meta_donnee.');
+    }
+
+  },
+
+  methods: {
+    LogoutGoogle() {
+      document.getElementById('signout_button').click();
+      window.location.href="http://localhost:8072/login";
+    },
+    getDataUser() {
+      this.isConnected = localStorage.getItem("isSignedIn") || 'false';
+      this.email = localStorage.getItem("email") || '';
+    }
+  },
+  computed : {
+
+  }
 };
 </script>
 
 <style scoped>
+
+
+.bottom {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  padding: 0;
+  margin: 0;
+  height: 50px!important;
+}
+.bottom .navbar-menu {
+  box-shadow: none;
+}
+.bottom a {
+  display: inline-flex;
+}
+.cacher {
+  display : none;
+}
 .btn-connexion {
   background: #83bad3;
   border-radius: 20px;
   color: white;
   box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%), 0 0 0 1px rgb(10 10 10 / 2%);
+}
+.btn-deconnexion {
+  background: #d3839d;
+  border-radius: 20px;
+  color: white;
+  box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%), 0 0 0 1px rgb(10 10 10 / 2%);
+  border: none;
+  margin-left: 8px;
 }
 .navbar {
   height: 70px;
