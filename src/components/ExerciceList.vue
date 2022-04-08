@@ -57,7 +57,7 @@ export default {
 
     console.log(localStorage.getItem("exercices"));
     var data = JSON.parse(localStorage.getItem("exercices"));
-    if (data.values.length > 0) {
+    if (data !=null && data.values.length > 0) {
       this.composters = data.values;
 
     } else {
