@@ -2,11 +2,11 @@
 
   <div class="columns is-multiline">
     <Exercice
-      v-for="composter in composters"
-      :key="composter[0]"
+      v-for="exercice in exercices"
+      :key="exercice[0]"
       class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
-      :composter-id="composter[0]"
-      :composter="composter"
+      :exercice-id="exercice[0]"
+      :exercice="exercice"
     />
   </div>
 </template>
@@ -20,8 +20,8 @@ export default {
   },
   data() {
     return {
-      nextComposterId: 1,
-      composters: new Array(),
+      nextexerciceId: 1,
+      exercices: new Array(),
     };
   },
   methods: {
@@ -58,7 +58,7 @@ export default {
     console.log(localStorage.getItem("exercices"));
     var data = JSON.parse(localStorage.getItem("exercices"));
     if (data !=null && data.values.length > 0) {
-      this.composters = data.values;
+      this.exercices = data.values;
 
     } else {
       alert('No meta_donnee.');

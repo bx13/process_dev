@@ -1,11 +1,11 @@
 <template>
-  <div class="composter">
-    <a class="navbar-item" :href="'/exercice/'+composterId">
-    <div class="card card-exercice" :class="{ 'composter-opened': isOpen, 'composter-closed': !isOpen}">
+  <div class="exercice">
+    <a class="navbar-item" :href="'/exercice/'+exerciceId">
+    <div class="card card-exercice" :class="{ 'exercice-actif': isActif, 'exercice-inactif': !isActif}">
       <div class="card-image" :style="{ cursor: 'true' ? 'pointer': ''}">
         <figure class="image is-4by3">
           <img
-            :src="composter[2]"
+            :src="exercice[2]"
             alt="Placeholder image"
           />
         </figure>
@@ -15,22 +15,21 @@
       <div class="card-content">
         <div class="media">
           <div class="media-content">
-            <p class="title is-4">{{ componentTitle }}</p>
-            <p class="subtitle is-6">{{ focusedDay }}</p>
+            <p class="title is-4">{{ exerciceTitle }}</p>
           </div>
         </div>
 
         <div class="content">
           <p>
-            {{ composter[1] }}
+            {{ exercice[1] }}
           </p>
-          <div  :class="{ 'adresse-opened': isOpen}">
+          <div  :class="{ 'adresse-actif': isActif}">
             <a :href="url">
-              {{ composter[9] }} </a>
+              {{ exercice[9] }} </a>
           </div>
           <div>
             <br/>
-            <span :class="{ 'etat': true, 'afaire': isAfaire, 'encours': isEncours, 'terminer': isTerminer}">{{ composter[8] }}</span>
+            <span :class="{ 'etat': true, 'afaire': isAfaire, 'encours': isEncours, 'terminer': isTerminer}">{{ exercice[8] }}</span>
           </div>
         </div>
       </div>
@@ -44,61 +43,37 @@
 export default {
   name: "Exercice",
   props: {
-      composterId: Number,
-      composter : Object,
-  },
-  data() {
-    return {
-      image: "./assets/img/compost1.png",
-      url: "https://vuejs.org/",
-      focusedDay: "",
-    };
+      exerciceId: Number,
+      exercice : Object,
   },
   mounted() {
-    console.log(this.composter);
+    console.log(this.exercice);
   },
   computed: {
-    componentTitle() {
-      return this.composter[3];
+    exerciceTitle() {
+      return this.exercice[3];
     },
-    isOpen() {
+    isActif() {
       return false
     },
     isAfaire() {
-      return this.composter[8] === "A faire" ;
+      return this.exercice[8] === "A faire" ;
     },
     isEncours() {
-      return this.composter[8] === "En cours" ;
+      return this.exercice[8] === "En cours" ;
     },
     isTerminer() {
-      return this.composter[8] === "Terminé" ;
+      return this.exercice[8] === "Terminé" ;
     },
     adresse() {
-      return '28 rue des plantes en pots ' + (this.composterId % 3 == 0 ? '4400 Nantes' : 'Toulouse')
+      return '28 rue des plantes en pots ' + (this.exerciceId % 3 == 0 ? '44000 Nantes' : 'Toulouse')
     }
-  },
-  methods: {
-    addOpeningSchedule() {
-      this.openingSchedules.push({
-        day: "Dimanche",
-        opening_hour: 9,
-        closing_hour: 12,
-      });
-    },
-
-    removeFirstOpeningSchedule() {
-      this.openingSchedules.pop();
-    },
-
-    updateFocusedDay(schedule) {
-      this.focusedDay = schedule.day;
-    },
   },
 };
 </script>
 
 <style scoped>
-.composter {
+.exercice {
   padding: 10px;
 }
 .card-exercice {
@@ -120,23 +95,17 @@ export default {
 .navbar-item img {
   max-height: none;
 }
-.composter-opened {
+.exercice-actif {
   background-color: #A6D785;
   border: 2px solid #3B5E2B;
   margin: 10px;
 }
-.composter-closed {
+.exercice-inactif {
   background-color: #F5F5F5;
   border: 2px dashed #C0C0C0;
   margin: 10px;
 }
-.adresse-in-toulouse {
-  background-color: pink;
-}
-.adresse-in-nantes {
-  background-color: yellow;
-}
-.adresse-opened {
+.adresse-actif {
   font-weight: bolder;
 }
 </style>

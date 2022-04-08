@@ -4,7 +4,7 @@
       <div class="box-container">
         <img class="img_login" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsVDHYfVhbk6hqIV8XZeMZkowfoCZ9oF2Eug&usqp=CAU" alt="">
 
-        <div class="login-choice"><span>Etape 1 : Se Connecter avec</span></div>
+        <div class="login-choice"><span>Étape 1 : Se connecter avec</span></div>
         <div class="signup-buttons">
           <div id="fb-root"></div>
           <button class="google-signup"  @click="LoginGoogle()">
@@ -12,7 +12,7 @@
             Google
           </button>
         </div>
-        <div class="login-choice"><span>Etape 2 : Communiquer l'identifiant de votre document</span></div>
+        <div class="login-choice"><span>Étape 2 : Renseigner l'identifiant de votre document</span></div>
         <div class="form-fields">
           <input id="id_doc" name="id_doc" type="text" placeholder="Identifiant du document">
         </div>
@@ -33,14 +33,14 @@
 export default {
   name: "Login",
   props: {
-    composterId: String,
+    exerciceId: String,
   },
   components: {
   },
   data() {
 
     return {
-      nextComposterId: 1,
+      nextExerciceId: 1,
       clientId: '843497641662-b0ofu3en642agu0v6db280cmib936mrl.apps.googleusercontent.com',
     };
   },
@@ -60,6 +60,7 @@ export default {
   }
 };
 </script>
+
 <style scoped>
 .img_login {
   max-width: 175px;

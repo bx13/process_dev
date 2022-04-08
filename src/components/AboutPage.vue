@@ -3,7 +3,7 @@
     <div class="hero-body">
       <div class="container">
         <h1 class="title">
-          A propos de {{info_coach[0]}}
+          À propos de {{info_coach[0]}}
         </h1>
         <h3 class="subtitle">
           {{ info_coach[1] }}
@@ -45,7 +45,7 @@
 
         </div>
         <div class="link-button-wrapper">
-          <button type="submit" class="btn submit-btn"><h1>Envoyer </h1></button>
+          <button type="submit" class="btn submit-btn"><h1>Envoyer</h1></button>
 
         </div>
       </div>

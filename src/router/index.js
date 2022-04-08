@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import AboutPage from '../components/AboutPage.vue';
 import HomePage from '../components/HomePage.vue';
 import ExerciceDetails from "../components/ExerciceDetails.vue";
-import Login from "../components/login.vue";
+import Login from "../components/Login.vue";
 import TropheePage from "../components/TropheePage.vue";
 
 const routes = [
@@ -17,7 +17,7 @@ const routes = [
     component: Login
   },
   {
-    path: '/exercice/:composterId',
+    path: '/exercice/:exerciceId',
     name: 'ExerciceDetails',
     props:true,
     component: ExerciceDetails

@@ -4,11 +4,11 @@
       Retourner à la page précédente
     </a>
   </p>
-  <div v-if="composter !== null" class="card card-exercice" :class="{ 'composter-opened': isOpen, 'composter-closed': !isOpen}">
+  <div v-if="exercice !== null">
     <div class="card-image img-d" :style="{ cursor: 'true' ? 'pointer': ''}">
       <figure class="image is-4by3 img-d">
         <img class="img-d"
-            :src="composter[2]"
+            :src="exercice[2]"
             alt="Placeholder image"
         />
       </figure>
@@ -18,27 +18,26 @@
     <div class="card-content">
       <div class="media">
         <div class="media-content">
-          <p class="title is-4">{{ componentTitle }}</p>
-          <p class="subtitle is-6">{{ focusedDay }}</p>
+          <p class="title is-4">{{ exerciceTitle }}</p>
         </div>
       </div>
 
       <div class="content">
         <p class="subtitle is-6">
-          {{ composter[3] }}
+          {{ exercice[3] }}
         </p>
         <p>
-          {{ composter[4] }}
+          {{ exercice[4] }}
         </p>
-        <div  :class="{ 'adresse-opened': isOpen}">
+        <div>
           <a :href="url">
-            {{ composter[9] }} - {{ composter[10] }}</a>
+            {{ exercice[9] }} - {{ exercice[10] }}</a>
         </div>
-        <p>Commentaire : {{ composter[13] }}</p>
-        <p>FeedBack coach : {{ composter[14] }}</p>
+        <p>Commentaire : {{ exercice[13] }}</p>
+        <p>Feedback du coach : {{ exercice[14] }}</p>
         <div>
           <br/>
-          <span>{{ composter[8] }}</span>
+          <span>{{ exercice[8] }}</span>
         </div>
       </div>
     </div>
@@ -55,15 +54,15 @@ import router from "../router";
 export default {
   name: "ExerciceDetails",
   props: {
-    composterId: String,
+    exerciceId: String,
   },
   components: {
   },
   data() {
 
     return {
-      nextComposterId: 1,
-      composter: null,
+      nextexerciceId: 1,
+      exercice: null,
     };
   },
   beforeCreate() {
@@ -74,7 +73,6 @@ export default {
   },
   mounted() {
 
-
     var isSignedIn = localStorage.getItem("isSignedIn");
     console.log(isSignedIn);
     //this.listCours();
@@ -82,9 +80,9 @@ export default {
     console.log(localStorage.getItem("exercices"));
     var data = JSON.parse(localStorage.getItem("exercices"));
     if (data.values.length > 0) {
-      this.composter = data.values[parseInt(this.composterId)-1];
-      console.log("composter");
-      console.log(this.composter);
+      this.exercice = data.values[parseInt(this.exerciceId)-1];
+      console.log("exercice");
+      console.log(this.exercice);
     } else {
       alert('No meta_donnee.');
     }
@@ -92,6 +90,7 @@ export default {
   },
 };
 </script>
+
 <style>
 .img-d {
   width: 260px;
