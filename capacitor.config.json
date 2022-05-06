@@ -1,6 +1,10 @@
 {
   "appId": "org.univ.compostmap",
-  "appName": "compostmap",
+  "server": {
+   "cleartext": true,
+   "url": "http://localhost:8072"
+  },
+  "appName": "erudit",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "dist",

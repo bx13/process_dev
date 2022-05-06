@@ -9,11 +9,12 @@
   },
   "dependencies": {
     "@capacitor/android": "^3.4.3",
-    "@capacitor/cli": "^3.4.3",
-    "@capacitor/core": "^3.4.3",
+    "@capacitor/cli": "^3.5.1",
+    "@capacitor/core": "^3.5.1",
+    "axios": "^0.26.1",
     "bulma": "^0.9.3",
     "core-js": "^3.6.5",
-    "vue": "^3.0.0",
+    "vue": "^3.2.31",
     "vue-google-login": "^2.0.5",
     "vue-google-signin-button-directive": "^1.0.3",
     "vue-router": "^4.0.12"
