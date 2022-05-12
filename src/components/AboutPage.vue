@@ -50,6 +50,7 @@
         </div>
       </div>
     </div>
+    
   </section>
 </template>
 
@@ -85,12 +86,13 @@ export default {
   mounted() {
     console.log(localStorage.getItem("contact"));
     var data = JSON.parse(localStorage.getItem("contact"));
-    if (data.values.length > 0) {
+    if (data !=null && data.values.length > 0) {
       this.info_coach = data.values[0];
       // Print columns A and E, which correspond to indices 0 and 4.
 
     } else {
-      alert('No meta_donnee.');
+      console.log('No meta_donnee.');
+      router.push({ path: '/login' });
     }
   }
 };
@@ -114,11 +116,22 @@ img {
 .subtitle2 {
   font-weight: 400;
   font-size: 18px;
+  max-width: 725px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .subtitle3 {
   font-weight: 900;
   font-size: 22px;
   padding: 13px 0;
+  max-width: 725px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.subtitle{
+  max-width: 725px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .form {
   /* Uniquement centrer le formulaire sur la page */

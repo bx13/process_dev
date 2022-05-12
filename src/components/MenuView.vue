@@ -24,13 +24,13 @@
 
     <div class="navbar-menu" :class="{ 'is-active': mobileMenuActive }">
       <div class="navbar-start">
-        <router-link class="navbar-item" to="/">
+        <router-link class="navbar-item"  :class="{ 'false' : isConnected === 'true'}" to="/">
           Accueil
         </router-link>
-        <router-link class="navbar-item" to="/trophee">
+        <router-link class="navbar-item" :class="{ 'false' : isConnected === 'true'}" to="/trophee">
           Trophée
         </router-link>
-        <router-link class="navbar-item" to="/about">
+        <router-link class="navbar-item" :class="{ 'false' : isConnected === 'true'}" to="/about">
           Contact
         </router-link>
       </div>
@@ -55,13 +55,13 @@
 
     <div class="navbar-menu " :class="{ 'is-active': true }">
       <div class="navbar-start">
-        <router-link class="navbar-item" to="/">
+        <router-link class="navbar-item" :class="{ 'cacher' : isConnected === 'false'}" to="/">
           Accueil
         </router-link>
-        <router-link class="navbar-item" to="/trophee">
+        <router-link class="navbar-item" :class="{ 'cacher' : isConnected === 'false'}" to="/trophee">
           Trophée
         </router-link>
-        <router-link class="navbar-item" to="/about">
+        <router-link class="navbar-item" :class="{ 'cacher' : isConnected === 'false'}" to="/about">
           Contact
         </router-link>
       </div>
@@ -82,19 +82,21 @@ export default {
       isConnected : 'false',
       email : '',
       logo : '',
+      traduction: [],
     };
   },
   mounted() {
     this.getDataUser();
     document.addEventListener('itemInserted', this.getDataUser, false);
 
-    console.log(localStorage.getItem("meta_donnee"));
+    //console.log(localStorage.getItem("meta_donnee"));
     var data = JSON.parse(localStorage.getItem("meta_donnee"));
     if (data !=null && data.values.length > 0) {
       var meta_data = data.values[0];
       // Print columns A and E, which correspond to indices 0 and 4.
       this.logo = meta_data[1];
-
+      this.traduction = JSON.parse(localStorage.getItem("traductions"));
+      console.log(this.traduction);
     } else {
       console.log('No meta_donnee.');
     }
@@ -172,7 +174,7 @@ export default {
   border-radius: 10px;
   overflow: hidden;
 }
-
+.navbar.box{border-top-left-radius: 0px;border-top-right-radius: 0px;}
 .animated::before {
   content: "";
   position: absolute;

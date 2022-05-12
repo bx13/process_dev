@@ -1,7 +1,6 @@
 <template>
-  
   <div id="sort-bar">
-    Trier par :
+    <span class="subtitle2 trie">Trier par : </span> 
      <!-- Choisir un attribut pour appliquer le filtre -->
     <select name="sortBy" id="select" v-model="sortBy">
       <option value="alphabetically">Titre</option>
@@ -22,13 +21,14 @@
     <div class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
       v-for="exercice in sortedArray"
       :key="exercice[0]">
-      <Exercice :exercice-id= exercice[0] :exercice= "exercice"/>         
+      <Exercice  :exercice-id="exercice[0]" :exercice="exercice"/>         
     </div>
   </div>
 </template>
 
 <script>
 import Exercice from "./Exercice.vue";
+import router from "../router";
 export default {
   name: "ExerciceList",
   components: {
@@ -47,29 +47,8 @@ export default {
   },
   methods: {
     listCours() {
-
-      var gapi = localStorage.getItem("gapi");
-      gapi.client.sheets.spreadsheets.values.get({
-        spreadsheetId: '1PcuPqNiXu3L68hWIK6neAIe6M5fRST4vR8af3d6fXS4',
-        range: 'data!A2:B',
-      }).then(function (response) {
-        var range = response.result;
-        if (range.values.length > 0) {
-          console.log('Name, Major:');
-          for (var i = 0; i < range.values.length; i++) {
-            var row = range.values[i];
-            // Print columns A and E, which correspond to indices 0 and 4.
-            console.log(row[0] + ', ' + row[1]);
-          }
-        } else {
-          console.log('No data found.');
-        }
-      }, function (response) {
-        console.log('Error: ' + response.result.error.message);
-      });
     }
   },
-
   computed: {
     sortedArray() {
       let sortedExercices = this.exercices;
@@ -81,7 +60,6 @@ export default {
             .includes(this.searchValue.toUpperCase())
         })
       }*/
-
       sortedExercices = sortedExercices.sort((a,b) => {
         let fa = a[3].toLowerCase(), fb = b[3].toLowerCase();
         if (fa < fb) {
@@ -106,49 +84,33 @@ export default {
   },
   mounted() {
 
+    
 
     var isSignedIn = localStorage.getItem("isSignedIn");
     console.log(isSignedIn);
     //this.listCours();
 
-    console.log(localStorage.getItem("exercices"));
+    //console.log(localStorage.getItem("exercices"));
     var data = JSON.parse(localStorage.getItem("exercices"));
+    console.log(data);
     if (data !=null && data.values.length > 0) {
       this.exercices = data.values;
-
     } else {
-      alert('No meta_donnee.');
+      console.log('No meta_donnee.');
+      router.push({ path: '/login' });
     }
 
   },
 };
 </script>
 
-<style>
-.sort-bar {
-  width: 80%;
-  height: 80px;
-  margin-left: 10px;
-  background-color: #f2e0c1;
-  display: flex;
-  flex-wrap: wrap;
-  padding: 10px;
-}
+<style scoped>
 .sort-button {
-  background-color: rgba(0,0,0,0);
-  border: none;
-  margin-bottom: 15px;
-  height: 50px;
-  width: 50px;
+  margin-left:8px;
 }
-.ascending-icon {
-  height: 30px;
-  height: 100%;
-  width: 30px;
-}
-
-#select {
-  background-color: rgba(0,0,0, 0);
-  border: none;
+select {
+  border-radius: 20px;
+    margin-left: 8px;
+    padding: 0 0 0 3px;
 }
 </style>

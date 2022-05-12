@@ -39,15 +39,16 @@ export default {
 
   },
   mounted() {
-    console.log(localStorage.getItem("meta_donnee"));
+    //console.log(localStorage.getItem("meta_donnee"));
     var data = JSON.parse(localStorage.getItem("meta_donnee"));
-    if (data.values.length > 0) {
+    if (data !=null && data.values.length > 0) {
       var meta_data = data.values[0];
       // Print columns A and E, which correspond to indices 0 and 4.
       this.formation = meta_data[2];
 
     } else {
-      alert('No meta_donnee.');
+      console.log('No meta_donnee.');
+      router.push({ path: '/login' });
     }
 
   }

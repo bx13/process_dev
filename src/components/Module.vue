@@ -13,15 +13,15 @@
         </div>
 
         <div class="content">
-          <p><span class="bold">{{ composter.pourcentage }}</span> de réalisation</p>
+          <p><span class="bold">{{ item[6] }}%</span> de réalisation</p>
           <p>
-            {{ composter.exo_fait }} exercice(s) fait sur {{ composter.exo_total }}
+            {{ item[5] }} exercice(s) fait sur {{ item[3] }}
           </p>
 
           <div class="container">
             <div class="progress-bar__container">
-              <div class="progress-bar" :style ="'transform: translate('+composter.pourcentage+', 0px); background-color: rgb(72, 149, 239);'">
-                <span class="progress-bar__text">{{composter.etat }}</span>
+              <div class="progress-bar" :style ="'transform: translate('+item[6]+'%, 0px); background-color: rgb(72, 149, 239);'">
+                <span class="progress-bar__text">{{item[7] }}</span>
               </div>
             </div>
           </div>
@@ -36,8 +36,8 @@
 export default {
   name: "Module",
   props: {
-      composterId: Number,
-      composter : Object,
+      moduleId: Number,
+      item : Object,
   },
   data() {
     return {
@@ -48,7 +48,7 @@ export default {
   },
   computed: {
     componentTitle() {
-      return this.composter.titre;
+      return this.item[1];
     },
     isOpen() {
       return false

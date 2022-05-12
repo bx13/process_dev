@@ -21,11 +21,14 @@
 
         <div class="content">
           <p>
-            Durée de l'exercice : {{ exercice[5] }} jours
+            {{ exercice[1] }}
           </p>
           <div  :class="{ 'adresse-actif': isActif}">
-            <a :href="url">
-              {{ exercice[9] }} </a>
+            
+              <li><span class="badge">Durée estimée : {{ exercice[5] }} jours</span></li>
+              <li v-if="exercice[15] !== ''"><span class="badge" style="background:#992f4c;">Retard : {{ exercice[15]}} jours</span></li>
+              
+              
           </div>
           <div>
             <br/>
