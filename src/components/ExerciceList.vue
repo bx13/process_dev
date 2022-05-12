@@ -25,7 +25,7 @@
     </div>
   </div>
 </template>
-
+ 
 <script>
 import Exercice from "./Exercice.vue";
 import router from "../router";
