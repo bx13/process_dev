@@ -21,7 +21,7 @@
 
         <div class="content">
           <p>
-            {{ exercice[1] }}
+            Durée de l'exercice : {{ exercice[5] }} jours
           </p>
           <div  :class="{ 'adresse-actif': isActif}">
             <a :href="url">
