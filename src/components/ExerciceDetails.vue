@@ -68,6 +68,7 @@
             <div class="list-bouton">
               <button @click="commencer" v-if="exercice[9] !== ''" :class="{ 'disabled': isCommencer}" :style="{background:traductions[12][4],color:traductions[12][3]}">{{traductions[12][1]}}</button>
               <button @click="terminer" v-if="exercice[11] !== ''" :class="{ 'disabled': isTerminer}" :style="{background:traductions[13][4],color:traductions[13][3]}">{{traductions[13][1]}}</button>
+              <button @click="accederRessource" :style="{background:traductions[17][4],color:traductions[17][3]}">{{traductions[17][1]}}</button>
               <button @click="sendCommentaire" :style="{background:traductions[14][4],color:traductions[14][3]}">{{traductions[14][1]}}</button>
               <button @click="reinitialiser" v-if="exercice[10] !== ''" :style="{background:traductions[15][4],color:traductions[15][3]}">{{traductions[15][1]}}</button>
               <button @click="reprendre" v-if="exercice[12] !== ''"  :style="{background:traductions[16][4],color:traductions[16][3]}">{{traductions[16][1]}}</button>
@@ -162,6 +163,9 @@ export default {
     calculRetard() {
       this.exercice[15] = "";
     },
+    accederRessource() {
+      window.open(this.exercice[7] , "_blank");
+    },
     updateDataExcel(cible,value,objet_mail,contenu_mail) {
         localStorage.setItem('range',"Exercices!"+cible+(parseInt(this.exerciceId)+1));
         localStorage.setItem('new_value',value);
@@ -251,7 +255,7 @@ textarea {
     vertical-align: baseline;
     border-radius: 0.25rem;
     color: #fff;
-    background-color: #1d1f22;
+    background-color: #4b8ca7;
     padding-right: 0.6em;
     padding-left: 0.6em;
     border-radius: 10rem;

@@ -1,16 +1,29 @@
 <template>
-  <div id="sort-bar">
-    <span class="subtitle2 trie">Trier par : </span> 
-     <!-- Choisir un attribut pour appliquer le filtre -->
+  <div id="search-bar">
+    <span class="subtitle2 trie">Réchercher le titre : </span>
+    <!-- Choisir un attribut pour appliquer le filtre -->
+    <input name="searchBy" id="search" v-model="search"/>
+    <!-- Appliquer le filtre ascendant/descendant -->
+    <!-- Rechercher un exercice -->
+    <!--input type="text" v-model="searchValue" placeholder="Chercher un exercice" id="search-input">
+    <i class="fa fa-search"></i-->
+    <span class="subtitle2 trie">Trier par : </span>
+    <!-- Choisir un attribut pour appliquer le filtre -->
     <select name="sortBy" id="select" v-model="sortBy">
-      <option value="alphabetically">Titre</option>
-      <option value="adresse">Durée</option>
+      <option value="3">Titre</option>
+      <option value="5">Durée</option>
+      <option value="15">Retard</option>
+      <option value="8">Avancement</option>
     </select>
-     <!-- Appliquer le filtre ascendant/descendant -->
-    <button v-on:click="ascending = !ascending" class="sort-button">
-      <i v-if="!ascending" class="fa fa-sort-up">Ascendant</i>
-      <i v-else class="fa fa-sort-down">Descendant</i>
+    <!-- Appliquer le filtre ascendant/descendant -->
+    <button  class="sort-button">
+      <i v-on:click="ascending = !ascending" v-if="!ascending" class="fa fa-sort-up">Ascendant</i>
+      <i v-on:click="ascending = !ascending" v-else class="fa fa-sort-down">Descendant</i>
     </button>
+
+  </div>
+  <div id="sort-bar">
+
     <!-- Rechercher un exercice -->
     <!--input type="text" v-model="searchValue" placeholder="Chercher un exercice" id="search-input">
     <i class="fa fa-search"></i-->
@@ -39,7 +52,8 @@ export default {
       nextexerciceId: 1,
       exercices: new Array(),
       ascending: true,
-      sortBy: 'alphabetically',
+      sortBy: '0',
+      search: '',
       // lecture du texte rechercher exercice 
       //searchValue: '',
       duree : null,
@@ -61,7 +75,11 @@ export default {
         })
       }*/
       sortedExercices = sortedExercices.sort((a,b) => {
-        let fa = a[3].toLowerCase(), fb = b[3].toLowerCase();
+        let fa = a[this.sortBy].toLowerCase(), fb = b[this.sortBy].toLowerCase();
+        if(this.sortBy == "5"){
+          fa = parseInt(fa);
+          fb = parseInt(fb);
+        }
         if (fa < fb) {
           return -1
         }
@@ -70,8 +88,8 @@ export default {
         }
         return 0
       });
-      if (this.duree){
-        sortedExercices = sortedExercices.filter((item) => { return (item[5] <= this.duree)})
+      if (this.search !== ""){
+        sortedExercices = sortedExercices.filter((item) => { return (item[3].includes(this.search))})
       }
       if (!this.ascending) {
         sortedExercices.reverse();
@@ -112,5 +130,16 @@ select {
   border-radius: 20px;
     margin-left: 8px;
     padding: 0 0 0 3px;
+}
+input {
+  margin-right: 16px;
+  padding: 8px;
+  border-radius: 20px;
+  width: 290px;
+}
+.hero-body {
+  flex-grow: 1;
+  flex-shrink: 0;
+  padding: 3rem 1.5rem;
 }
 </style>
