@@ -194,9 +194,9 @@
         console.log(JSON.parse(localStorage.getItem('exercices')));
         console.log(JSON.parse(localStorage.getItem('traductions')));
         console.log(JSON.parse(localStorage.getItem('contact')));
-        
+        localStorage.setItem('spreadsheetId', document.getElementById('spreadsheetId').innerHTML);
         if(localStorage.getItem('redirect')=="true") {
-          localStorage.setItem('spreadsheetId', document.getElementById('spreadsheetId').innerHTML);
+          
           localStorage.setItem('redirect',"");
           window.location.href="/";
           
