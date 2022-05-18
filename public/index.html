@@ -116,7 +116,7 @@
       for(var i in profile){
         console.log(profile[i]);
         console.log(i);
-        if(i != "getId" && profile[i].includes("@gmail.com")) {
+        if(i != "getId" && profile[i] != undefined && profile[i].includes("@gmail.com")) {
           localStorage.setItem('email', profile[i]);
           break;
         }
