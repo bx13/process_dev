@@ -1,4 +1,4 @@
-package org.univ.compostmap;
+package com.example.app;
 
 import com.getcapacitor.BridgeActivity;
 
