@@ -98,7 +98,7 @@ export default {
       this.traduction = JSON.parse(localStorage.getItem("traductions"));
       console.log(this.traduction);
     } else {
-      console.log('No meta_donnee.');
+      console.log('No meta_donnee MenuView.');
     }
 
   },

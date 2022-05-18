@@ -61,7 +61,6 @@
               <div class="flex-item">
                 <p>Feedback du coach </p>
                 <textarea rows="6" cols="50" readonly v-model="exercice[17]">
-                
                 </textarea> 
               </div>
           </div>
@@ -197,7 +196,7 @@ export default {
       console.log("exercice");
       console.log(this.exercice);
     } else {
-      console.log('No meta_donnee.');
+      console.log('No meta_donnee ExerciceDetails.');
       router.push({ path: '/login' });
     }
 

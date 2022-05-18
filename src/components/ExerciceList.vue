@@ -114,7 +114,7 @@ export default {
     if (data !=null && data.values.length > 0) {
       this.exercices = data.values;
     } else {
-      console.log('No meta_donnee.');
+      console.log('No meta_donnee ExerciceList.');
       router.push({ path: '/login' });
     }
 

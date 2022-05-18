@@ -188,15 +188,15 @@
         localStorage.setItem('exercices', JSON.stringify(response.result.valueRanges[2]));
         localStorage.setItem('traductions', JSON.stringify(response.result.valueRanges[3]));
         localStorage.setItem('contact', JSON.stringify(response.result.valueRanges[4]));
-			  console.log('reponse meta_donnee');
+			  console.log('reponse meta_donnee index');
 			  console.log(JSON.parse(localStorage.getItem('meta_donnee')));
         console.log(JSON.parse(localStorage.getItem('modules')));
         console.log(JSON.parse(localStorage.getItem('exercices')));
         console.log(JSON.parse(localStorage.getItem('traductions')));
         console.log(JSON.parse(localStorage.getItem('contact')));
-        localStorage.setItem('spreadsheetId', document.getElementById('spreadsheetId').innerHTML);
+        
         if(localStorage.getItem('redirect')=="true") {
-          
+          localStorage.setItem('spreadsheetId', document.getElementById('spreadsheetId').innerHTML);
           localStorage.setItem('redirect',"");
           window.location.href="/";
           

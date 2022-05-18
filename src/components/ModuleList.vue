@@ -72,7 +72,7 @@ export default {
       this.exercices = this.exercices.filter((item) => { return (item[12] !== "" && item[6] === "Defi")});
 
     } else {
-      console.log('No meta_donnee.');
+      console.log('No meta_donnee ModuleList.');
       router.push({ path: '/login' });
     }
   },

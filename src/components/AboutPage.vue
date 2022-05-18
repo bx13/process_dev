@@ -91,7 +91,7 @@ export default {
       // Print columns A and E, which correspond to indices 0 and 4.
 
     } else {
-      console.log('No meta_donnee.');
+      console.log('No meta_donnee AboutPage.');
       router.push({ path: '/login' });
     }
   }

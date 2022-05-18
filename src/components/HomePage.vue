@@ -47,7 +47,7 @@ export default {
       this.formation = meta_data[2];
 
     } else {
-      console.log('No meta_donnee.');
+      console.log('No meta_donnee homePage.');
       router.push({ path: '/login' });
     }
 
