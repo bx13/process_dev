@@ -106,7 +106,7 @@ export default {
   methods: {
     LogoutGoogle() {
       document.getElementById('signout_button').click();
-      window.location.href="http://localhost:8072/login";
+      window.location.href=window.location.origin+"/login";
     },
     getDataUser() {
       this.isConnected = localStorage.getItem("isSignedIn") || 'false';

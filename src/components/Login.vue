@@ -48,7 +48,7 @@ export default {
   methods: {
     LoginGoogle() {
       document.getElementById('authorize_button').click();
-      setTimeout(function(){ window.location.href="http://localhost:8072/login"; }, 5000);
+      setTimeout(function(){ window.location.href=window.location.origin+"/login"; }, 5000);
 
       console.log('login');
     },
