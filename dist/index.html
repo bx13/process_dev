@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><script src="https://apis.google.com/js/api.js"></script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"><link rel="icon" href="/favicon.ico"><title>Erudit</title><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"><style>#app>div{
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="/favicon.ico"><title>Erudit</title><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"><style>#app>div{
       padding-bottom:65px;
     }
 	@media (width < 600px) {
@@ -16,7 +16,7 @@
   .card {
       border-radius: 1.25rem!important;
       box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)!important;
-}</style><style id="custom-style"></style><link href="/css/app.7299069d.css" rel="preload" as="style"><link href="/css/chunk-vendors.59c69654.css" rel="preload" as="style"><link href="/js/app.fcc0d0e3.js" rel="preload" as="script"><link href="/js/chunk-vendors.e051e118.js" rel="preload" as="script"><link href="/css/chunk-vendors.59c69654.css" rel="stylesheet"><link href="/css/app.7299069d.css" rel="stylesheet"></head><body><noscript><strong>We're sorry but compostmap doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><button id="authorize_button" style="display: none;"></button> <button id="signout_button" style="display: none;"></button> <button id="get_data_excel" style="display: none;"></button> <button id="update_data_excel" style="display: none;"></button> <span id="spreadsheetId" style="display: none;"></span> <span id="range" style="display: none;"></span><div id="app"></div><script>// Client ID and API key from the Developer Console
+}</style><style id="custom-style"></style><link href="/css/app.b8c47603.css" rel="preload" as="style"><link href="/css/chunk-vendors.59c69654.css" rel="preload" as="style"><link href="/js/app.6545d053.js" rel="preload" as="script"><link href="/js/chunk-vendors.e051e118.js" rel="preload" as="script"><link href="/css/chunk-vendors.59c69654.css" rel="stylesheet"><link href="/css/app.b8c47603.css" rel="stylesheet"></head><body><noscript><strong>We're sorry but compostmap doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><button id="authorize_button" style="display: none;"></button> <button id="signout_button" style="display: none;"></button> <button id="get_data_excel" style="display: none;"></button> <button id="update_data_excel" style="display: none;"></button> <span id="spreadsheetId" style="display: none;"></span> <span id="range" style="display: none;"></span><div id="app"></div><script>// Client ID and API key from the Developer Console
       var CLIENT_ID = '843497641662-qarkcml1firr06et8kej886q1n39ipn6.apps.googleusercontent.com';
       var API_KEY = 'AIzaSyCx8f68Dsft0_mg3X1JuPBYFVW0MeP60Y8';
 	  //jacok57228@nitynote.com
@@ -75,6 +75,7 @@
       function updateSigninStatus(isSignedIn) {
 	  console.log(isSignedIn);
 		localStorage.setItem("isSignedIn", isSignedIn);
+    console.log("isSignedIn");
 		if (isSignedIn) {
 		
 			
@@ -94,7 +95,7 @@
 				handle_get_data_excel(false);
 			}
 			//window.location.href="http://localhost:8072/login";
-		} else {
+		} else if(window.location.origin.includes("localhost:")) {
 			localStorage.clear();
 		}
 		/*
@@ -122,6 +123,9 @@
        */
       function handleSignoutClick(event) {
         gapi.auth2.getAuthInstance().signOut();
+        if(!(window.location.origin.includes("localhost:"))) {
+			    localStorage.clear();
+		    }
       }
 
 
@@ -231,4 +235,4 @@
         }, function(response) {
             alert('Error: ' + response.result.error.message);
           });
-      }</script><script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()"></script><script src="/js/chunk-vendors.e051e118.js"></script><script src="/js/app.fcc0d0e3.js"></script></body></html>
+      }</script><script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()"></script><script src="/js/chunk-vendors.e051e118.js"></script><script src="/js/app.6545d053.js"></script></body></html>

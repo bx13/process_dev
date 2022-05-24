@@ -86,7 +86,6 @@ export default {
     };
   },
   mounted() {
-    this.getDataUser();
     document.addEventListener('itemInserted', this.getDataUser, false);
 
     //console.log(localStorage.getItem("meta_donnee"));
@@ -100,8 +99,8 @@ export default {
     } else {
       console.log('No meta_donnee MenuView.');
     }
-
-  },
+    this.getDataUser();
+    },
 
   methods: {
     LogoutGoogle() {
@@ -109,8 +108,23 @@ export default {
       window.location.href=window.location.origin+"/login";
     },
     getDataUser() {
-      this.isConnected = localStorage.getItem("isSignedIn") || 'false';
-      this.email = localStorage.getItem("email") || '';
+      console.log('getDataUser');
+       console.log(this.traduction.values[24][1]);
+      if(window.location.origin.includes("localhost:")){
+        console.log('web');
+        this.isConnected = localStorage.getItem("isSignedIn") || 'false';
+        this.email = localStorage.getItem("email") || '';
+      }else {
+        console.log('mobile');
+        this.isConnected = this.logo.length>0 ? 'true' : 'false';
+        console.log(this.logo);
+        console.log(this.logo.length);
+        console.log(this.isConnected);
+        if(this.isConnected == 'true' ){
+          this.email = this.traduction.values[24][1];
+          console.log(this.email);
+        }
+      }
     }
   },
   computed : {

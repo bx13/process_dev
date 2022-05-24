@@ -51,6 +51,7 @@ export default {
       setTimeout(function(){ window.location.href=window.location.origin+"/login"; }, 5000);
 
       console.log('login');
+      console.log(window.location.origin+"/login");
     },
     getData() {
       document.getElementById('spreadsheetId').innerHTML = document.getElementById("id_doc").value;
